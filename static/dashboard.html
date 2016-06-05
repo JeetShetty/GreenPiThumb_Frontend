@@ -1,0 +1,19 @@
+<html ng-app="dashboardApp">
+<head>
+  <title>GreenPiThumb</title>
+  <script src="/static/third_party/jquery-2.2.4.min.js"></script>
+  <script src="/static/third_party/angular.min.js"></script>
+  <script src="/static/dashboard.js"></script>
+  <link rel="stylesheet" href="/static/third_party/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/third_party/bootstrap-theme.min.css">
+</head>
+<body ng-controller="DashboardCtrl">
+  <h1>GreenPiThumb Dashboard</h1>
+  <table class="table table-hover">
+    <tr>
+      <td>Ambient Temperature</td>
+      <td>{{dashboard.temperature}}&deg; C</td>
+    </tr>
+  </table>
+</body>
+</html>
