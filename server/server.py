@@ -16,7 +16,7 @@ def main(args):
         dummy_history = [{
             'timestamp': '20160605T185904.03943Z',
             'temperature': 34.2,
-            }]
+        }]
         return json.dumps(dummy_history)
 
     # TODO(mtlynch): It might make more sense to bring nginx into this stack so
