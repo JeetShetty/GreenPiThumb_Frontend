@@ -13,11 +13,29 @@ import dummy_values
 def main(args):
     app = klein.Klein()
 
+    # TODO(mtlynch): Replace all history routes with real values once the
+    # non-dummy data is available.
     @app.route('/temperatureHistory.json')
     def temperature_history(request):
-        # TODO(mtlynch): Replace this with the real temperature history.
         return json.dumps(dummy_values.generate_values('temperature', 34.2,
                                                        5.0))
+
+    @app.route('/reservoirHistory.json')
+    def reservoir_history(request):
+        return json.dumps(dummy_values.generate_values('water_ml', 1989.2,
+                                                       14.0))
+
+    @app.route('/lightHistory.json')
+    def light_history(request):
+        return json.dumps(dummy_values.generate_values('light_pct', 57.4, 3.0))
+
+    @app.route('/soilMoistureHistory.json')
+    def soil_moisture_history(request):
+        return json.dumps(dummy_values.generate_values('moisture', 105.9, 4.0))
+
+    @app.route('/ambientHumidityHistory.json')
+    def ambient_humidity_history(request):
+        return json.dumps(dummy_values.generate_values('humidity', 87.3, 6.0))
 
     # TODO(mtlynch): It might make more sense to bring nginx into this stack so
     # that nginx handles static files and Python just handles things that have
