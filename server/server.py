@@ -1,3 +1,4 @@
+#!/usr/bin/python2
 """Web server for GreenPiThumb."""
 
 import argparse
@@ -6,6 +7,8 @@ import json
 import klein
 from twisted.web.static import File
 
+import dummy_values
+
 
 def main(args):
     app = klein.Klein()
@@ -13,11 +16,8 @@ def main(args):
     @app.route('/temperatureHistory.json')
     def temperature_history(request):
         # TODO(mtlynch): Replace this with the real temperature history.
-        dummy_history = [{
-            'timestamp': '20160605T185904.03943Z',
-            'temperature': 34.2,
-        }]
-        return json.dumps(dummy_history)
+        return json.dumps(dummy_values.generate_values('temperature', 34.2,
+                                                       5.0))
 
     # TODO(mtlynch): It might make more sense to bring nginx into this stack so
     # that nginx handles static files and Python just handles things that have
