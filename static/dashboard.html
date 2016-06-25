@@ -13,6 +13,22 @@
       <td>Ambient Temperature</td>
       <td>{{dashboard.temperature | number:1}}&deg; C</td>
     </tr>
+    <tr>
+      <td>Ambient Humidity</td>
+      <td>{{dashboard.humidity | number:1}}</td>
+    </tr>
+    <tr>
+      <td>Ambient Light</td>
+      <td>{{dashboard.lightLevel | number:1}}%</td>
+    </tr>
+    <tr>
+      <td>Soil Moisture</td>
+      <td>{{dashboard.soilMoisture | number:1}}</td>
+    </tr>
+    <tr>
+      <td>Reservoir Level</td>
+      <td>{{dashboard.reservoirLevel | number:1}} mL</td>
+    </tr>
   </table>
 </body>
 </html>
