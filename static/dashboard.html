@@ -2,10 +2,51 @@
 <head>
   <title>GreenPiThumb</title>
   <script src="/static/third_party/angular.min.js"></script>
+  <script src="/static/third_party/d3.v4.min.js"></script>
   <script src="/static/dashboard.js"></script>
   <link rel="stylesheet" href="/static/third_party/bootstrap.min.css">
   <link rel="stylesheet" href="/static/third_party/bootstrap-theme.min.css">
 </head>
+<style>
+.chart {
+    background: #eee;
+    padding: 3px;
+}
+
+.chart div {
+  width: 0;
+  transition: all 1s ease-out;
+  -moz-transition: all 1s ease-out;
+  -webkit-transition: all 1s ease-out;
+}
+
+.chart div {
+  font: 10px sans-serif;
+  background-color: steelblue;
+  text-align: right;
+  padding: 3px;
+  margin: 5px;
+  color: white;
+  box-shadow: 2px 2px 2px #666;
+}
+
+
+body { font: 12px Arial;}
+
+path {
+    stroke: steelblue;
+    stroke-width: 2;
+    fill: none;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: grey;
+    stroke-width: 1;
+    shape-rendering: crispEdges;
+}
+</style>
 <body ng-controller="DashboardCtrl">
   <h1>GreenPiThumb Dashboard</h1>
   <table class="table table-hover">
@@ -30,5 +71,6 @@
       <td>{{dashboard.reservoirLevel | number:1}} mL</td>
     </tr>
   </table>
+  <line-graph chart-data="dashboard.myData"></line-graph>
 </body>
 </html>
