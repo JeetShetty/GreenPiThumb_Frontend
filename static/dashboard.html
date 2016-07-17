@@ -52,7 +52,7 @@ path {
   <table class="table table-hover">
     <tr>
       <td>Ambient Temperature</td>
-      <td>{{dashboard.temperature | number:1}}&deg; C</td>
+      <td>{{dashboard.latestTemperature | number:1}}&deg; C</td>
     </tr>
     <tr>
       <td>Ambient Humidity</td>
@@ -71,6 +71,6 @@ path {
       <td>{{dashboard.reservoirLevel | number:1}} mL</td>
     </tr>
   </table>
-  <line-graph chart-data="dashboard.myData"></line-graph>
+  <line-graph chart-data="dashboard.temperature"></line-graph>
 </body>
 </html>

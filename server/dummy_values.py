@@ -29,11 +29,11 @@ def generate_values(value_name, start_value, max_delta):
         A list of random entries. For example, if the value_name was
         "temperature", the list might look like the following:
 
-            [{'timestamp': '20160623T230615.093245Z', 'temperature': 34.2},
-            {'timestamp': '20160623T230640.093245Z', 'temperature': 30.1},
-            {'timestamp': '20160623T230705.093245Z', 'temperature': 29.2},
-            ...
-            {'timestamp': '20160623T230845.093245Z', 'temperature': 28.6}]
+            [{'timestamp': '20160623T230615Z', 'temperature': 34.2},
+             {'timestamp': '20160623T230640Z', 'temperature': 30.1},
+             {'timestamp': '20160623T230705Z', 'temperature': 29.2},
+             ...
+             {'timestamp': '20160623T230845Z', 'temperature': 28.6}]
     """
     values = []
     timestamp = datetime.datetime.now(tz=pytz.utc)
@@ -54,4 +54,4 @@ def _generate_value_entry(value_name, timestamp, value):
 
 
 def _format_timestamp(timestamp):
-    return timestamp.strftime('%Y%m%dT%H:%M:%S.%fZ')
+    return timestamp.strftime('%Y%m%dT%H:%M:%SZ')
