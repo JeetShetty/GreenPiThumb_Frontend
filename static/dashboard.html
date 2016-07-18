@@ -56,21 +56,30 @@ path {
     </tr>
     <tr>
       <td>Ambient Humidity</td>
-      <td>{{dashboard.humidity | number:1}}</td>
+      <td>{{dashboard.latestHumidity | number:1}}</td>
     </tr>
     <tr>
       <td>Ambient Light</td>
-      <td>{{dashboard.lightLevel | number:1}}%</td>
+      <td>{{dashboard.latestLightLevel | number:1}}%</td>
     </tr>
     <tr>
       <td>Soil Moisture</td>
-      <td>{{dashboard.soilMoisture | number:1}}</td>
+      <td>{{dashboard.latestSoilMoisture | number:1}}</td>
     </tr>
     <tr>
       <td>Reservoir Level</td>
-      <td>{{dashboard.reservoirLevel | number:1}} mL</td>
+      <td>{{dashboard.latestReservoirLevel | number:1}} mL</td>
     </tr>
   </table>
-  <line-graph chart-data="dashboard.temperature"></line-graph>
+  <h2>Temperature</h2>
+  <line-graph chart-data="dashboard.temperature" value-property="temperature"></line-graph>
+  <h2>Ambient Humidity</h2>
+  <line-graph chart-data="dashboard.humidity" value-property="humidity"></line-graph>
+  <h2>Ambient Light</h2>
+  <line-graph chart-data="dashboard.lightLevel" value-property="light_pct"></line-graph>
+  <h2>Soil Moisture</h2>
+  <line-graph chart-data="dashboard.soilMoisture" value-property="moisture"></line-graph>
+  <h2>Reservoir Level</h2>
+  <line-graph chart-data="dashboard.reservoirLevel" value-property="water_ml"></line-graph>
 </body>
 </html>
