@@ -37,17 +37,6 @@ def main(args):
     def ambient_humidity_history(request):
         return json.dumps(dummy_values.generate_values('humidity', 87.3, 6.0))
 
-    # TODO(mtlynch): It might make more sense to bring nginx into this stack so
-    # that nginx handles static files and Python just handles things that have
-    # to be calculated on the fly. This is okay for now, though.
-    @app.route('/dashboard')
-    def home(request):
-        return File('./static/dashboard.html')
-
-    @app.route('/static/', branch=True)
-    def static(request):
-        return File('./static')
-
     app.run('0.0.0.0', args.port)
 
 
