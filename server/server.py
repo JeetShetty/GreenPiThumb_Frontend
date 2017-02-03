@@ -5,7 +5,6 @@ import argparse
 import json
 
 import klein
-from twisted.web.static import File
 
 import dummy_values
 
