@@ -19,11 +19,6 @@ def main(args):
         return json.dumps(dummy_values.generate_values('temperature', 34.2,
                                                        5.0))
 
-    @app.route('/reservoirHistory.json')
-    def reservoir_history(request):
-        return json.dumps(dummy_values.generate_values('water_ml', 1989.2,
-                                                       14.0))
-
     @app.route('/lightHistory.json')
     def light_history(request):
         return json.dumps(dummy_values.generate_values('light_pct', 57.4, 3.0))
