@@ -16,8 +16,8 @@ def main(args):
     # non-dummy data is available.
     @app.route('/temperatureHistory.json')
     def temperature_history(request):
-        return json.dumps(dummy_values.generate_values('temperature', 34.2,
-                                                       5.0))
+        return json.dumps(
+            dummy_values.generate_values('temperature', 34.2, 5.0))
 
     @app.route('/lightHistory.json')
     def light_history(request):
