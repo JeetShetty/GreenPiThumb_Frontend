@@ -21,7 +21,8 @@ def main(args):
 
     @app.route('/lightHistory.json')
     def light_history(request):
-        return json.dumps(dummy_values.generate_values('light_pct', 57.4, 3.0))
+        return json.dumps(
+            dummy_values.generate_values('lightPercentage', 57.4, 3.0))
 
     @app.route('/soilMoistureHistory.json')
     def soil_moisture_history(request):
