@@ -21,7 +21,6 @@ yapf \
   --exclude "./server/greenpithumb/*" \
   --exclude "./third_party/*"
 
-
 # Run static analysis for Python bugs/cruft.
 pyflakes server/*.py tests/*.py
 
