@@ -47,5 +47,6 @@ if __name__ == '__main__':
     parser.add_argument(
         '-d',
         '--db_file',
-        help='Path to GreenPiThumb database file',)
+        help='Path to GreenPiThumb database file',
+        required=True)
     main(parser.parse_args())
