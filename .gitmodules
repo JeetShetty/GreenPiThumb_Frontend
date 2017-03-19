@@ -1,0 +1,3 @@
+[submodule "server/greenpithumb"]
+	path = server/greenpithumb
+	url = https://github.com/JeetShetty/GreenPiThumb.git

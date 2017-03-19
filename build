@@ -8,7 +8,9 @@ set -e
 # Run unit tests and calculate code coverage.
 coverage run \
   --source server \
-  -m unittest discover
+  --omit server/greenpithumb \
+  -m unittest discover tests
+
 
 # Check that source has correct formatting.
 yapf \
@@ -16,7 +18,8 @@ yapf \
   --recursive \
   --style google \
   ./ \
-  --exclude "./third_party/*"
+  --exclude "./third_party/*" \
+  --exclude "./server/greenpithumb/*"
 
 # Run static analysis for Python bugs/cruft.
 pyflakes server/*.py tests/*.py

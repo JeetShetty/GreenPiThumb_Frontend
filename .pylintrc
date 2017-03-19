@@ -1,5 +1,8 @@
 [MASTER]
 
+# Ignore the greenpithumb submodule because it's a separate repo.
+ignore=server/greenpithumb
+
 # Load the DocStringChecker plugin.
 load-plugins=lint
 
