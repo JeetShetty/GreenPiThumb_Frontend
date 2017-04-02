@@ -2,20 +2,16 @@ import datetime
 import json
 import unittest
 
-from dateutil import tz
 import pytz
 
-from server import record_encoder
+from server import json_encoder
 from server.greenpithumb.greenpithumb import db_store
 
-# Timezone offset info for EST (UTC minus 5 hours).
-UTC_MINUS_5 = tz.tzoffset(None, -18000)
 
-
-class RecordEncoderTest(unittest.TestCase):
+class JSONEncoderTest(unittest.TestCase):
 
     def setUp(self):
-        self.encoder = record_encoder.RecordEncoder()
+        self.encoder = json_encoder.Encoder()
 
     def assertJsonEqual(self, expected, actual):
         json.loads(expected)
@@ -26,7 +22,7 @@ class RecordEncoderTest(unittest.TestCase):
         self.assertJsonEqual(
             """
             {
-              "timestamp": "20170319T150123+0000",
+              "timestamp": "20170319T150123Z",
               "soil_moisture": 305
             }
             """.strip(),
@@ -38,7 +34,7 @@ class RecordEncoderTest(unittest.TestCase):
         self.assertJsonEqual(
             """
             {
-              "timestamp": "20170319T150123+0000",
+              "timestamp": "20170319T150123Z",
               "ambient_light": 87.3
             }
             """.strip(),
@@ -50,7 +46,7 @@ class RecordEncoderTest(unittest.TestCase):
         self.assertJsonEqual(
             """
             {
-              "timestamp": "20170319T150123+0000",
+              "timestamp": "20170319T150123Z",
               "humidity": 21.5
             }
             """.strip(),
@@ -62,7 +58,7 @@ class RecordEncoderTest(unittest.TestCase):
         self.assertJsonEqual(
             """
             {
-              "timestamp": "20170319T150123+0000",
+              "timestamp": "20170319T150123Z",
               "temperature": 21.5
             }
             """.strip(),
@@ -74,7 +70,7 @@ class RecordEncoderTest(unittest.TestCase):
         self.assertJsonEqual(
             """
             {
-              "timestamp": "20170319T150123+0000",
+              "timestamp": "20170319T150123Z",
               "water_pumped": 302.5
             }
             """.strip(),
@@ -83,17 +79,3 @@ class RecordEncoderTest(unittest.TestCase):
                     timestamp=datetime.datetime(
                         2017, 3, 19, 15, 1, 23, 924000, tzinfo=pytz.utc),
                     water_pumped=302.5)))
-
-    def test_encodes_non_utc_records_correctly(self):
-        self.assertJsonEqual(
-            """
-            {
-              "timestamp": "20170319T150123-0500",
-              "temperature": 21.5
-            }
-            """.strip(),
-            self.encoder.encode(
-                db_store.TemperatureRecord(
-                    timestamp=datetime.datetime(
-                        2017, 3, 19, 15, 1, 23, 924000, tzinfo=UTC_MINUS_5),
-                    temperature=21.5)))
