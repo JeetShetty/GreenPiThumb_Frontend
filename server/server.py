@@ -22,19 +22,19 @@ def main(args):
 
         @app.route('/temperatureHistory.json')
         def temperature_history(request):
-            return encoder.encode(temperature_store.retrieve_temperature())
+            return encoder.encode(temperature_store.get())
 
         @app.route('/lightHistory.json')
         def light_history(request):
-            return encoder.encode(ambient_light_store.retrieve_ambient_light())
+            return encoder.encode(ambient_light_store.get())
 
         @app.route('/soilMoistureHistory.json')
         def soil_moisture_history(request):
-            return encoder.encode(soil_moisture_store.retrieve_soil_moisture())
+            return encoder.encode(soil_moisture_store.get())
 
         @app.route('/ambientHumidityHistory.json')
         def ambient_humidity_history(request):
-            return encoder.encode(humidity_store.retrieve_humidity())
+            return encoder.encode(humidity_store.get())
 
         app.run('0.0.0.0', args.port)
 
