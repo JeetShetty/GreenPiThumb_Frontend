@@ -7,12 +7,14 @@ import contextlib
 import greenpithumb.greenpithumb.db_store as db_store
 import klein
 
+import images
 import json_encoder
 
 
 def main(args):
     app = klein.Klein()
     encoder = json_encoder.Encoder()
+    image_indexer = images.Indexer(args.image_path)
     with contextlib.closing(db_store.open_or_create_db(
             args.db_file)) as db_connection:
         temperature_store = db_store.TemperatureStore(db_connection)
@@ -36,6 +38,10 @@ def main(args):
         def ambient_humidity_history(request):
             return encoder.encode(humidity_store.get())
 
+        @app.route('/images.json')
+        def image_index(request):
+            return encoder.encode(image_indexer.index())
+
         app.run('0.0.0.0', args.port)
 
 
@@ -48,5 +54,11 @@ if __name__ == '__main__':
         '-d',
         '--db_file',
         help='Path to GreenPiThumb database file',
+        required=True)
+    parser.add_argument(
+        '-i',
+        '--image_path',
+        type=str,
+        help='Path to folder containing GreenPiThumb images',
         required=True)
     main(parser.parse_args())
