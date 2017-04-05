@@ -61,7 +61,7 @@ class ImagesTest(unittest.TestCase):
         open(os.path.join(self.temp_dir, '2017-04-01T1851Z.jpg'), 'a').close()
         os.mkdir(os.path.join(self.temp_dir, 'dummydir'))
         # Make a directory named like an image file.
-        os.makedirs(os.path.join(self.temp_dir, '2017-04-05T0000Z.jpg'))
+        os.mkdir(os.path.join(self.temp_dir, '2017-04-05T0000Z.jpg'))
 
         self.assertItemsEqual(
             [{
