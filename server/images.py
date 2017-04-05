@@ -27,19 +27,19 @@ def _filename_to_index_entry(filename):
 class Indexer(object):
     """Creates an index of GreenPiThumb image files."""
 
-    def __init__(self, image_path):
-        """Creates a new Indexer instance
+    def __init__(self, images_path):
+        """Creates a new Indexer instance.
 
         Args:
-            image_path: Path to the GreenPiThumb images directory.
+            images_path: Path to the GreenPiThumb images directory.
         """
-        self._image_path = image_path
+        self._images_path = images_path
 
     def index(self):
-        """Generates an index of the GreenPiThumb
+        """Generates an index of the GreenPiThumb image files.
 
         Creates an index of all the GreenPiThumb image files in the specified
-        image path. If there are non-image files in the directory, these are
+        images path. If there are non-image files in the directory, these are
         ignored. Any GreenPiThumb image files in subdirectories are also
         ignored.
 
@@ -50,10 +50,10 @@ class Indexer(object):
             prefix).
         """
         file_index = []
-        for filename in _files_in_directory(self._image_path):
+        for filename in _files_in_directory(self._images_path):
             try:
                 file_index.append(_filename_to_index_entry(filename))
             except ValueError:
-                # Ignore filenames that can't be parsed as GrenPiThumb images.
+                # Ignore filenames that can't be parsed as GreenPiThumb images.
                 pass
         return file_index

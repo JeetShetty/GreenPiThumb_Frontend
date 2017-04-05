@@ -9,6 +9,11 @@ import pytz
 from server import images
 
 
+def createEmptyFile(filepath):
+    """Creates an empty file at the given path and closes the file handle."""
+    open(filepath, 'a').close()
+
+
 class ImagesTest(unittest.TestCase):
 
     def setUp(self):
@@ -19,9 +24,9 @@ class ImagesTest(unittest.TestCase):
         shutil.rmtree(self.temp_dir)
 
     def test_indexes_image_files(self):
-        open(os.path.join(self.temp_dir, '2017-04-01T1851Z.jpg'), 'a').close()
-        open(os.path.join(self.temp_dir, '2017-04-01T1853Z.jpg'), 'a').close()
-        open(os.path.join(self.temp_dir, '2017-04-02T0000Z.jpg'), 'a').close()
+        createEmptyFile(os.path.join(self.temp_dir, '2017-04-01T1851Z.jpg'))
+        createEmptyFile(os.path.join(self.temp_dir, '2017-04-01T1853Z.jpg'))
+        createEmptyFile(os.path.join(self.temp_dir, '2017-04-02T0000Z.jpg'))
         self.assertItemsEqual(
             [
                 {
@@ -43,12 +48,11 @@ class ImagesTest(unittest.TestCase):
             self.indexer.index())
 
     def test_excludes_non_greenpithumb_image_files(self):
-        open(os.path.join(self.temp_dir, '2017-04-01T1851Z.jpg'), 'a').close()
-        open(os.path.join(self.temp_dir, '2017-04-01T1853Z.txt'), 'a').close()
-        open(os.path.join(self.temp_dir, 'dummyfile.jpg'), 'a').close()
-        open(
-            os.path.join(self.temp_dir, '2017-04-01T1845Z-extrajunk.jpg'),
-            'a').close()
+        createEmptyFile(os.path.join(self.temp_dir, '2017-04-01T1851Z.jpg'))
+        createEmptyFile(os.path.join(self.temp_dir, '2017-04-01T1853Z.txt'))
+        createEmptyFile(os.path.join(self.temp_dir, 'dummyfile.jpg'))
+        createEmptyFile(
+            os.path.join(self.temp_dir, '2017-04-01T1845Z-extrajunk.jpg'))
         self.assertItemsEqual(
             [{
                 'timestamp': datetime.datetime(
@@ -58,7 +62,7 @@ class ImagesTest(unittest.TestCase):
             self.indexer.index())
 
     def test_excludes_directories(self):
-        open(os.path.join(self.temp_dir, '2017-04-01T1851Z.jpg'), 'a').close()
+        createEmptyFile(os.path.join(self.temp_dir, '2017-04-01T1851Z.jpg'))
         os.mkdir(os.path.join(self.temp_dir, 'dummydir'))
         # Make a directory named like an image file.
         os.mkdir(os.path.join(self.temp_dir, '2017-04-05T0000Z.jpg'))
@@ -74,9 +78,8 @@ class ImagesTest(unittest.TestCase):
     def test_excludes_subdirectories(self):
         subdirectory_path = os.path.join(self.temp_dir, 'child_dir')
         os.mkdir(subdirectory_path)
-        open(os.path.join(self.temp_dir, '2017-04-01T1851Z.jpg'), 'a').close()
-        open(os.path.join(subdirectory_path, '2017-05-08T0000Z.jpg'),
-             'a').close()
+        createEmptyFile(os.path.join(self.temp_dir, '2017-04-01T1851Z.jpg'))
+        createEmptyFile(os.path.join(subdirectory_path, '2017-05-08T0000Z.jpg'))
 
         self.assertItemsEqual(
             [{
