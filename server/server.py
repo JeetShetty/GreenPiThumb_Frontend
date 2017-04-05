@@ -7,12 +7,12 @@ import contextlib
 import greenpithumb.greenpithumb.db_store as db_store
 import klein
 
-import record_encoder
+import json_encoder
 
 
 def main(args):
     app = klein.Klein()
-    encoder = record_encoder.RecordEncoder()
+    encoder = json_encoder.Encoder()
     with contextlib.closing(db_store.open_or_create_db(
             args.db_file)) as db_connection:
         temperature_store = db_store.TemperatureStore(db_connection)
