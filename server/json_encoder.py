@@ -4,8 +4,8 @@ import simplejson
 
 
 def _encode_time(time):
-    """Encodes time in YYYYMMDDTHHMMSSZ format (assumes UTC time zone)."""
-    return datetime.datetime.strftime(time, '%Y%m%dT%H%M%SZ')
+    """Encodes time in YYYYMMDDTHHMMZ format (assumes UTC time zone)."""
+    return datetime.datetime.strftime(time, '%Y%m%dT%H%MZ')
 
 
 class Encoder(simplejson.JSONEncoder):
