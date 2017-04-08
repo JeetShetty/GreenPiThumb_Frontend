@@ -29,7 +29,7 @@ class JSONEncoderTest(unittest.TestCase):
             self.encoder.encode(
                 db_store.SoilMoistureRecord(
                     timestamp=datetime.datetime(
-                        2017, 3, 19, 15, 1, 0, tzinfo=pytz.utc),
+                        2017, 3, 19, 15, 1, tzinfo=pytz.utc),
                     soil_moisture=305)))
         self.assertJsonEqual(
             """
@@ -41,7 +41,7 @@ class JSONEncoderTest(unittest.TestCase):
             self.encoder.encode(
                 db_store.AmbientLightRecord(
                     timestamp=datetime.datetime(
-                        2017, 3, 19, 15, 1, 0, tzinfo=pytz.utc),
+                        2017, 3, 19, 15, 1, tzinfo=pytz.utc),
                     ambient_light=87.3)))
         self.assertJsonEqual(
             """
@@ -53,7 +53,7 @@ class JSONEncoderTest(unittest.TestCase):
             self.encoder.encode(
                 db_store.HumidityRecord(
                     timestamp=datetime.datetime(
-                        2017, 3, 19, 15, 1, 0, tzinfo=pytz.utc),
+                        2017, 3, 19, 15, 1, tzinfo=pytz.utc),
                     humidity=21.5)))
         self.assertJsonEqual(
             """
@@ -65,7 +65,7 @@ class JSONEncoderTest(unittest.TestCase):
             self.encoder.encode(
                 db_store.TemperatureRecord(
                     timestamp=datetime.datetime(
-                        2017, 3, 19, 15, 1, 0, tzinfo=pytz.utc),
+                        2017, 3, 19, 15, 1, tzinfo=pytz.utc),
                     temperature=21.5)))
         self.assertJsonEqual(
             """
@@ -77,5 +77,5 @@ class JSONEncoderTest(unittest.TestCase):
             self.encoder.encode(
                 db_store.WateringEventRecord(
                     timestamp=datetime.datetime(
-                        2017, 3, 19, 15, 1, 0, tzinfo=pytz.utc),
+                        2017, 3, 19, 15, 1, tzinfo=pytz.utc),
                     water_pumped=302.5)))
