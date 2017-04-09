@@ -35,14 +35,14 @@ class JSONEncoderTest(unittest.TestCase):
             """
             {
               "timestamp": "20170319T1501Z",
-              "ambient_light": 87.3
+              "light": 87.3
             }
             """.strip(),
             self.encoder.encode(
-                db_store.AmbientLightRecord(
+                db_store.LightRecord(
                     timestamp=datetime.datetime(
                         2017, 3, 19, 15, 1, tzinfo=pytz.utc),
-                    ambient_light=87.3)))
+                    light=87.3)))
         self.assertJsonEqual(
             """
             {

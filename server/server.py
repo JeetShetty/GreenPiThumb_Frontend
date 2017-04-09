@@ -18,7 +18,7 @@ def main(args):
     with contextlib.closing(db_store.open_or_create_db(
             args.db_file)) as db_connection:
         temperature_store = db_store.TemperatureStore(db_connection)
-        ambient_light_store = db_store.AmbientLightStore(db_connection)
+        light_store = db_store.LightStore(db_connection)
         soil_moisture_store = db_store.SoilMoistureStore(db_connection)
         humidity_store = db_store.HumidityStore(db_connection)
 
@@ -28,14 +28,14 @@ def main(args):
 
         @app.route('/lightHistory.json')
         def light_history(request):
-            return encoder.encode(ambient_light_store.get())
+            return encoder.encode(light_store.get())
 
         @app.route('/soilMoistureHistory.json')
         def soil_moisture_history(request):
             return encoder.encode(soil_moisture_store.get())
 
-        @app.route('/ambientHumidityHistory.json')
-        def ambient_humidity_history(request):
+        @app.route('/humidityHistory.json')
+        def humidity_history(request):
             return encoder.encode(humidity_store.get())
 
         @app.route('/images.json')
