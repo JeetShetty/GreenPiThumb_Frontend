@@ -110,7 +110,8 @@ class AppTest(unittest.TestCase):
             """, response.data)
 
     def test_soil_moisture_history_empty_db(self):
-        mock_soil_moisture_store = mock.Mock(spec_set=db_store.SoilMoistureStore)
+        mock_soil_moisture_store = mock.Mock(
+            spec_set=db_store.SoilMoistureStore)
         mock_soil_moisture_store.get.return_value = []
 
         app_client = app.create(
@@ -124,7 +125,8 @@ class AppTest(unittest.TestCase):
         self.assertJsonEqual("[]", response.data)
 
     def test_soil_moisture_history_non_empty_db(self):
-        mock_soil_moisture_store = mock.Mock(spec_set=db_store.SoilMoistureStore)
+        mock_soil_moisture_store = mock.Mock(
+            spec_set=db_store.SoilMoistureStore)
         mock_soil_moisture_store.get.return_value = [
             db_store.SoilMoistureRecord(
                 timestamp=datetime.datetime(
