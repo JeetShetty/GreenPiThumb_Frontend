@@ -67,3 +67,6 @@ target/
 
 # rope files
 .ropeproject/*
+
+# GreenPiThumb DB file
+greenpithumb.db
